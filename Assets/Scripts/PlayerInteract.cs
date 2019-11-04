@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
+    private const string interactableObjectTag = "Interactable";
+    private const string interactionFunctionName = "Interact";
+    private const string interactionButton = "e";
+
     private GameObject raycastObj;
 
     [SerializeField] private int rayLength = 10;
@@ -18,16 +22,16 @@ public class PlayerInteract : MonoBehaviour
 
         if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
         {
-            if (hit.collider.CompareTag("Button"))
+
+            if (hit.collider.CompareTag(interactableObjectTag))
             {
                 raycastObj = hit.collider.gameObject;
 
                 interactText.SetActive(true);
 
-                if (Input.GetKeyDown("e"))
+                if (Input.GetKeyDown(interactionButton))
                 {
-                    Debug.Log("INteracao");
-                    raycastObj.SendMessage("Press");
+                    raycastObj.SendMessage(interactionFunctionName);
                 }
             }
             else

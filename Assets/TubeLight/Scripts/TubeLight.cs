@@ -11,9 +11,8 @@ public class TubeLight : MonoBehaviour
 	public float m_Radius = 0.3f;
 	public float m_Length = 0.0f;
 
-	[HideInInspector]
+
 	public Mesh m_Sphere;
-	[HideInInspector]
 	public Mesh m_Capsule;
 	[HideInInspector]
 	public Shader m_ProxyShader;

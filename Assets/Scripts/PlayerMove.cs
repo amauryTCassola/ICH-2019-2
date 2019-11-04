@@ -24,7 +24,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(1.0f/Time.deltaTime);
         PlayerMovement();
     }
 

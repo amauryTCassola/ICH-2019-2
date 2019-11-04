@@ -65,7 +65,12 @@
   <ItemGroup>
     <Compile Include="Assets\MinValueAttribute\MinValueAttribute.cs" />
     <Compile Include="Assets\Sci Fi Modular Pack\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\ButtonController.cs" />
     <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\DoorButton.cs" />
+    <Compile Include="Assets\Scripts\DoorController.cs" />
+    <Compile Include="Assets\Scripts\InteractionTest.cs" />
+    <Compile Include="Assets\Scripts\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\PlayerMove.cs" />
     <Compile Include="Assets\TubeLight\Scripts\TubeLight.cs" />
