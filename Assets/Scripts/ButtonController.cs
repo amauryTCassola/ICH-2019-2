@@ -8,6 +8,8 @@ public class ButtonController : MonoBehaviour
     private TubeLight m_tubeLight;
     private Color onColor = Color.green, offColor = Color.red;
     private bool isOn = false;
+    public Nav2 playerNavigation;
+    public int nextObjectiveIndex;
 
     public DoorController m_doorController;
 
@@ -31,6 +33,11 @@ public class ButtonController : MonoBehaviour
             m_pointLight.color = offColor;
             m_tubeLight.m_Color = offColor;
             m_doorController.CloseDoor();
+        }
+
+        if (playerNavigation)
+        {
+            playerNavigation.ChangeObjective(nextObjectiveIndex);
         }
 
     }

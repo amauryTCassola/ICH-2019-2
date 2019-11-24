@@ -17,13 +17,15 @@ public class Navigation : MonoBehaviour
         line.SetPosition(0, transform.position); //set the line's origin
 
         agent.SetDestination(target.position); //create the path
+
+
+        DrawPath(agent.path);
+
+        agent.isStopped = true; ;//add this if you don't want to move the agent
     }
 
     private void LateUpdate()
     {
-        DrawPath(agent.path);
-
-        agent.isStopped = true; ;//add this if you don't want to move the agent
     }
 
     void Start()
@@ -42,7 +44,7 @@ public class Navigation : MonoBehaviour
 
         DrawPath(agent.path);
 
-        agent.isStopped = true; ;//add this if you don't want to move the agent
+        agent.isStopped = true;//add this if you don't want to move the agent
     }
 
     void DrawPath(NavMeshPath path)
@@ -50,9 +52,15 @@ public class Navigation : MonoBehaviour
         //if (path.corners.Length < 2) //if the path has 1 or no corners, there is no need
             //return;
 
-        line.positionCount = path.corners.Length; //set the array of positions to the amount of corners
+        //line.positionCount = path.corners.Length; //set the array of positions to the amount of corners
 
-        line.SetPositions(path.corners); //set corner positions
-        
+        //line.SetPositions(path.corners); //set corner positions
+       
+        line.positionCount = 2; //set the array of positions to the amount of corners
+
+        line.SetPosition(0,transform.position); //set corner positions,target.position
+        line.SetPosition(1, target.position);
+        Debug.Log("Nro corners:" + 2);
+
     }
 }
