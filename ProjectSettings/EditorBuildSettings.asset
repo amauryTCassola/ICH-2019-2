@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene1.unity
     guid: 8de53babf2f55cd4a85b64bfac294cc6
+  - enabled: 1
+    path: Assets/Scenes/FormularioScene.unity
+    guid: 33b0364cc9b90b2439bab0de08d78cbc
   m_configObjects: {}

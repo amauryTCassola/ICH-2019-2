@@ -5,14 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public void PlayGame()
+
+    public TextPanelController menuPanel;
+
+    public void StartPlayGame()
     {
+        StartCoroutine(PlayGame());
+    }
+
+    IEnumerator PlayGame(){
+        yield return menuPanel.Close();
+        menuPanel.gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void QuitGame()
+    public void StartQuitGame(){
+        StartCoroutine(QuitGame());
+    }
+
+    public IEnumerator QuitGame()
     {
-        Debug.Log("QUIT!");
+        yield return menuPanel.Close();
+        menuPanel.gameObject.SetActive(false);
         Application.Quit();
     }
 

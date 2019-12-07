@@ -11,18 +11,33 @@ public class Nav2 : MonoBehaviour
     private NavMeshAgent agent;
     private Color c = Color.white;
     public LineRenderer line;
+    bool isActive = true;
+
+    void Awake(){
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        InstructionStylePicker inst = GameObject.Find("InstructionStylePicker").GetComponent<InstructionStylePicker>();
+        if(inst.instructionStyle != 2){
+            agent.enabled = false;
+            line.enabled = false;
+            this.enabled = false;
+            isActive = false;
+        }
+    }
 
     public void Start()
     {
-        target = objectives[0];
-        agent = gameObject.GetComponent<NavMeshAgent>();
-        agent.SetDestination(target.position);
-        agent.isStopped = true ;//add this if you don't want to move the agent
+        if(isActive){
+            target = objectives[0];
+            agent.SetDestination(target.position);
+            agent.isStopped = true ;//add this if you don't want to move the agent
+        }
     }
 
     public void Update()
     {
-        StartCoroutine(DrawPath());
+        if(isActive){
+            StartCoroutine(DrawPath());
+        }
     }
 
     IEnumerator DrawPath()
@@ -47,8 +62,12 @@ public class Nav2 : MonoBehaviour
 
         Vector3 previousCorner = path.corners[0];
 
+        for(int index = 0; index < path.corners.Length; index++){
+            path.corners[index] = new Vector3(path.corners[index].x, path.corners[index].y+0.1f, path.corners[index].z);
+        }
+
         int i = 1;
-        Debug.Log("Nro corners:" + path.corners.Length);
+        //Debug.Log("Nro corners:" + path.corners.Length);
         while (i < path.corners.Length)
         {
             Vector3 currentCorner = path.corners[i];
@@ -64,7 +83,9 @@ public class Nav2 : MonoBehaviour
 
     public void ChangeObjective(int nextObjectiveIndex)
     {
-        target = objectives[nextObjectiveIndex];
-        agent.SetDestination(target.position);
+        if(isActive){
+            target = objectives[nextObjectiveIndex];
+            agent.SetDestination(target.position);
+        }
     }
 }

@@ -9,16 +9,20 @@ using System;
 public class DBEntry
 {
     public int tecnicaDeNavegacao;
-    public bool jaJogouJogosParecidosAntes;
-    public int satisfacao;
-    public int jogoPrecisaDeMaisInstrucoes;
-    public int jogoPrecisaDeMenosInstrucoes;
+    public float tempoDeJogo;
+    public int jaJogouJogosParecidosAntes;
+    public int teveFacilidadeEmCompletarOJogo;
+    public int seSentiuPerdido;
+    public int jogoPrecisaDeInstrucoesMaisClaras;
+    public int instrucoesQuebraramImersao;
+    public int teveQueSeEsforcarParaJogar;
+    public int experienciaSatisfatoria;
 }
 
 public class WebServerConnection
 {
 
-    IEnumerator UploadToDatabase(DBEntry entry){
+    public static IEnumerator UploadToDatabase(DBEntry entry){
         string json = JsonUtility.ToJson(entry);
 
         UnityWebRequest www = UnityWebRequest.Put("https://us-central1-projetofinalihc.cloudfunctions.net/uploadToDatabase", json);

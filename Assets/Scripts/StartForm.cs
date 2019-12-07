@@ -6,28 +6,33 @@ public class StartForm : MonoBehaviour
 {
 
     public static bool GameIsPaused = false;
+    public TextPanelController startForm;
+    public PlayerMove playerMove;
+    public PlayerLook playerLook;
+    public PlayerInteract playerInteract;
 
-    public GameObject startUI;
 
-    void Start()
-    {
+    void Start(){
         Pause();
     }
 
     public void Resume()
     {
-        startUI.SetActive(false);
-        Time.timeScale = 1f;
+        StartCoroutine(startForm.Close());
+        playerMove.enabled = true;
+        playerLook.enabled = true;
+        playerInteract.enabled = true;
         GameIsPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Pause()
     {
-        startUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
         Cursor.lockState = CursorLockMode.None;
+        playerMove.enabled = false;
+        playerLook.enabled = false;
+        playerInteract.enabled = false;
+        GameIsPaused = true;
     }
 
 }

@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField] private int rayLength = 10;
     [SerializeField] private LayerMask layerMaskInteract;
-    public GameObject interactText;
+    public Animator interactText;
 
     void Update()
     {
@@ -27,7 +27,8 @@ public class PlayerInteract : MonoBehaviour
             {
                 raycastObj = hit.collider.gameObject;
 
-                interactText.SetActive(true);
+                if(interactText.GetCurrentAnimatorStateInfo(0).IsName("InteractionPanelClosed"))
+                    interactText.Play("InteractionPanelOpen");
 
                 if (Input.GetKeyDown(interactionButton))
                 {
@@ -36,12 +37,14 @@ public class PlayerInteract : MonoBehaviour
             }
             else
             {
-                interactText.SetActive(false);
+                if(interactText.GetCurrentAnimatorStateInfo(0).IsName("InteractionPanelOpened"))
+                    interactText.Play("InteractionPanelClose");
             }
         }
         else
         {
-            interactText.SetActive(false);
+            if(interactText.GetCurrentAnimatorStateInfo(0).IsName("InteractionPanelOpened"))
+                interactText.Play("InteractionPanelClose");
         }
     }
 

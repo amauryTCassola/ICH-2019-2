@@ -6,10 +6,14 @@ using UnityEngine.UI;
 public class LevelTimer : MonoBehaviour
 {
 
-    public Text text;
+    public string text;
     public float theTime = 0;
     public float speed = 1;
     private bool playing = true;
+
+    void Awake(){
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     // Use this for initialization
     void Start()
@@ -26,7 +30,7 @@ public class LevelTimer : MonoBehaviour
             string hours = Mathf.Floor((theTime % 216000) / 3600).ToString("00");
             string minutes = Mathf.Floor((theTime % 3600) / 60).ToString("00");
             string seconds = (theTime % 60).ToString("00");
-            text.text = hours + ":" + minutes + ":" + seconds;
+            text = hours + ":" + minutes + ":" + seconds;
         }
        
     }

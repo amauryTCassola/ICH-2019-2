@@ -13,7 +13,7 @@ export const uploadToDatabase = functions.https.onRequest(async (request, respon
     const data = JSON.parse(request.body)
 
     await firestore
-        .collection("posts")
+        .collection("playerData")
         .add(data)
     response.send("OKIDOKI")
 })
