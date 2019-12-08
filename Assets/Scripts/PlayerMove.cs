@@ -24,7 +24,10 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement();
+        if (!PauseMenu.GameIsPaused)
+        {
+            PlayerMovement();
+        }
     }
 
     private void PlayerMovement()
