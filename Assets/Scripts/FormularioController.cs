@@ -14,7 +14,6 @@ public class FormularioController : MonoBehaviour
     float playTime;
 
     void Start(){
-        PlayerPrefs.DeleteAll();
         responses = new int[questions.Length];
         navigationTech = GameObject.Find("InstructionStylePicker").GetComponent<InstructionStylePicker>().instructionStyle;
         playTime = GameObject.Find("Timer").GetComponent<LevelTimer>().theTime;
